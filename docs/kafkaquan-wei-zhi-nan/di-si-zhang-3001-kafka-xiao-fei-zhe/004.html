@@ -1,0 +1,880 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>再均衡监听器、从特定偏移开始、退出 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="005.html" />
+    
+    
+    <link rel="prev" href="003.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    开始
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../../jian-jie.html">
+            
+                <a href="../../jian-jie.html">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../../shi-yong-chang-jing.html">
+            
+                <a href="../../shi-yong-chang-jing.html">
+            
+                    
+                    使用场景
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../../kuai-su-kai-shi.html">
+            
+                <a href="../../kuai-su-kai-shi.html">
+            
+                    
+                    快速开始
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../she-ji.html">
+            
+                <a href="../../she-ji.html">
+            
+                    
+                    设计
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../she-ji/dong-ji.html">
+            
+                <a href="../../she-ji/dong-ji.html">
+            
+                    
+                    动机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../she-ji/chi-jiu-xing.html">
+            
+                <a href="../../she-ji/chi-jiu-xing.html">
+            
+                    
+                    持久性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../she-ji/xiao-lv.html">
+            
+                <a href="../../she-ji/xiao-lv.html">
+            
+                    
+                    效率
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../she-ji/sheng-chan-zhe.html">
+            
+                <a href="../../she-ji/sheng-chan-zhe.html">
+            
+                    
+                    生产者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../../she-ji/xiao-fei-zhe.html">
+            
+                <a href="../../she-ji/xiao-fei-zhe.html">
+            
+                    
+                    消费者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../../she-ji/xiao-xi-fa-song-yu-yi.html">
+            
+                <a href="../../she-ji/xiao-xi-fa-song-yu-yi.html">
+            
+                    
+                    消息发送语义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../../she-ji/bei-fen.html">
+            
+                <a href="../../she-ji/bei-fen.html">
+            
+                    
+                    备份
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../../she-ji/ri-zhi-ya-shi.html">
+            
+                <a href="../../she-ji/ri-zhi-ya-shi.html">
+            
+                    
+                    日志压缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="../../she-ji/pei-e.html">
+            
+                <a href="../../she-ji/pei-e.html">
+            
+                    
+                    配额
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../shi-xian.html">
+            
+                <a href="../../shi-xian.html">
+            
+                    
+                    实现
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../shi-xian/wang-luo-ceng.html">
+            
+                <a href="../../shi-xian/wang-luo-ceng.html">
+            
+                    
+                    网络层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../shi-xian/xiao-xi.html">
+            
+                <a href="../../shi-xian/xiao-xi.html">
+            
+                    
+                    消息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../shi-xian/xiao-xi-ge-shi.html">
+            
+                <a href="../../shi-xian/xiao-xi-ge-shi.html">
+            
+                    
+                    消息格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../shi-xian/ri-zhi.html">
+            
+                <a href="../../shi-xian/ri-zhi.html">
+            
+                    
+                    日志
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../../shi-xian/fen-bu-shi.html">
+            
+                <a href="../../shi-xian/fen-bu-shi.html">
+            
+                    
+                    分布式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../cao-zuo.html">
+            
+                <a href="../../cao-zuo.html">
+            
+                    
+                    操作
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../ji-chu-kafka-cao-zuo.html">
+            
+                <a href="../../ji-chu-kafka-cao-zuo.html">
+            
+                    
+                    基础Kafka操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../shu-ju-zhong-xin.html">
+            
+                <a href="../../shu-ju-zhong-xin.html">
+            
+                    
+                    数据中心
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../kafkapei-zhi.html">
+            
+                <a href="../../kafkapei-zhi.html">
+            
+                    
+                    Kafka配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../javaban-ben.html">
+            
+                <a href="../../javaban-ben.html">
+            
+                    
+                    Java版本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../../ying-jian-he-os.html">
+            
+                <a href="../../ying-jian-he-os.html">
+            
+                    
+                    硬件和OS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../../jian-kong.html">
+            
+                <a href="../../jian-kong.html">
+            
+                    
+                    监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../kafkaquan-wei-zhi-nan.html">
+            
+                <a href="../../kafkaquan-wei-zhi-nan.html">
+            
+                    
+                    Kafka权威指南
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../di-yi-zhang-3001-chu-shi-kafka.html">
+            
+                <a href="../di-yi-zhang-3001-chu-shi-kafka.html">
+            
+                    
+                    第一章、初识Kafka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../di-er-zhang-3001-an-zhuang-kafka.html">
+            
+                <a href="../di-er-zhang-3001-an-zhuang-kafka.html">
+            
+                    
+                    第二章、安装Kafka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../di-san-zhang-3001-kafka-sheng-chan-zhe.html">
+            
+                <a href="../di-san-zhang-3001-kafka-sheng-chan-zhe.html">
+            
+                    
+                    第三张、Kafka生产者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../di-si-zhang-3001-kafka-xiao-fei-zhe.html">
+            
+                <a href="../di-si-zhang-3001-kafka-xiao-fei-zhe.html">
+            
+                    
+                    第四章、Kafka消费者
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1" data-path="41kafkaconsumer-gai-nian.html">
+            
+                <a href="41kafkaconsumer-gai-nian.html">
+            
+                    
+                    KafkaConsumer 概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2" data-path="002.html">
+            
+                <a href="002.html">
+            
+                    
+                    Kafka消费者创建和配置参数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.3" data-path="003.html">
+            
+                <a href="003.html">
+            
+                    
+                    提交和偏移量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.4.4" data-path="004.html">
+            
+                <a href="004.html">
+            
+                    
+                    再均衡监听器、从特定偏移开始、退出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.5" data-path="005.html">
+            
+                <a href="005.html">
+            
+                    
+                    其它
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >再均衡监听器、从特定偏移开始、退出</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="47&#x3001;&#x518D;&#x5747;&#x8861;&#x76D1;&#x542C;&#x5668;">4.7&#x3001;&#x518D;&#x5747;&#x8861;&#x76D1;&#x542C;&#x5668;</h3>
+<p>&#x6D88;&#x8D39;&#x8005;&#x5728;&#x9000;&#x51FA;&#x548C;&#x8FDB;&#x884C;&#x5206;&#x533A;&#x518D;&#x5747;&#x8861;&#x4E4B;&#x524D;&#xFF0C;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x4E00;&#x4E9B;&#x6E05;&#x7406;&#x5DE5;&#x4F5C;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x5728;&#x6D88;&#x8D39;&#x8005;&#x5931;&#x53BB;&#x5BF9;&#x4E00;&#x4E2A;&#x5206;&#x533A;&#x7684;&#x6240;&#x6709;&#x6743;&#x4E4B;&#x524D;&#x63D0;&#x4EA4;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5DF2;&#x5904;&#x7406;&#x8BB0;&#x5F55;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x3002;&#x5982;&#x679C;&#x6D88;&#x8D39;&#x8005;&#x51C6;&#x5907;&#x4E86;&#x4E00;&#x4E2A;&#x7F13;&#x51B2;&#x533A;&#x7528;&#x4E8E;&#x5904;&#x7406;&#x5076;&#x53D1;&#x7684;&#x4E8B;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x5931;&#x53BB;&#x5206;&#x533A;&#x6240;&#x6709;&#x6743;&#x4E4B;&#x524D;&#xFF0C;&#x9700;&#x8981;&#x5904;&#x7406;&#x5728;&#x7F13;&#x51B2;&#x533A;&#x7D2F;&#x79EF;&#x4E0B;&#x6765;&#x7684;&#x8BB0;&#x5F55;&#x3002;&#x53EF;&#x80FD;&#x8FD8;&#x9700;&#x8981;&#x5173;&#x95ED;&#x6587;&#x4EF6;&#x53E5;&#x67C4;&#x3001;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x7B49;&#x3002;</p>
+<p>&#x5728;&#x4E3A;&#x6D88;&#x8D39;&#x8005;&#x5206;&#x914D;&#x65B0;&#x5206;&#x533A;&#x6216;&#x79FB;&#x9664;&#x65E7;&#x5206;&#x533A;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6D88;&#x8D39;&#x8005; API &#x6267;&#x884C;&#x4E00;&#x4E9B;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#xFF0C;&#x5728;&#x8C03;&#x7528; <code>subscribe()</code> &#x65B9;&#x6CD5;&#x65F6;&#x4F20;&#x8FDB;&#x53BB;&#x4E00;&#x4E2A; <code>ConsumerRebalanceListener</code> &#x5B9E;&#x4F8B;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;<code>ConsumerRebalanceListener</code> &#x6709;&#x4E24;&#x4E2A;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>(1) <code>public void onPartitionsRevoked(Collection&lt;TopicPartition&gt; partitions)</code> &#x65B9;&#x6CD5;&#x4F1A;&#x5728;&#x518D;&#x5747;&#x8861;&#x5F00;&#x59CB;&#x4E4B;&#x524D;&#x548C;&#x6D88;&#x8D39;&#x8005;&#x505C;&#x6B62;&#x8BFB;&#x53D6;&#x6D88;&#x606F;&#x4E4B;&#x540E;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x5982;&#x679C;&#x5728;&#x8FD9;&#x91CC;&#x63D0;&#x4EA4;&#x504F;&#x79FB;&#x91CF;&#xFF0C;&#x4E0B;&#x4E00;&#x4E2A;&#x63A5;&#x7BA1;&#x5206;&#x533A;&#x7684;&#x6D88;&#x8D39;&#x8005;&#x5C31;&#x77E5;&#x9053;&#x8BE5;&#x4ECE;&#x54EA;&#x91CC;&#x5F00;&#x59CB;&#x8BFB;&#x53D6;&#x4E86;&#x3002;</p>
+<p>(2) <code>public void onPartitionsAssigned(Collection&lt;TopicPartition&gt; partitions)</code> &#x65B9;&#x6CD5;&#x4F1A;&#x5728;&#x91CD;&#x65B0;&#x5206;&#x914D;&#x5206;&#x533A;&#x4E4B;&#x540E;&#x548C;&#x6D88;&#x8D39;&#x8005;&#x5F00;&#x59CB;&#x8BFB;&#x53D6;&#x6D88;&#x606F;&#x4E4B;&#x524D;&#x88AB;&#x8C03;&#x7528;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x5C06;&#x6F14;&#x793A;&#x5982;&#x4F55;&#x5728;&#x5931;&#x53BB;&#x5206;&#x533A;&#x6240;&#x6709;&#x6743;&#x4E4B;&#x524D;&#x901A;&#x8FC7; onPartitionsRevoked() &#x65B9;&#x6CD5;&#x6765;&#x63D0;&#x4EA4;&#x504F;&#x79FB;&#x91CF;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> Map&lt;TopicPartition, OffsetAndMetadata&gt; currentOffsets= <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+
+<span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HandleRebalance</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ConsumerRebalanceListener</span> </span>{ <span class="hljs-comment">// &#x278A;</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> onPartitionsAssigned&#xFF08;Collection&lt;TopicPartition&gt; partitions) { <span class="hljs-comment">//&#x278B;</span>
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> onPartitionsRevoked&#xFF08;Collection&lt;TopicPartition&gt; partitions) {
+        System.out.println(<span class="hljs-string">&quot;Lost partitions in rebalance. Committing current offsets:&quot;</span>
+                           + currentOffsets);
+        consumer.commitSync(currentOffsets);<span class="hljs-comment">// &#x278C;</span>
+    }
+}
+
+<span class="hljs-keyword">try</span> {
+    consumer.subscribe(topics, <span class="hljs-keyword">new</span> HandleRebalance());<span class="hljs-comment">// &#x278D;</span>
+    <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+        ConsumerRecords&lt;String, String&gt; records = consumer.poll(<span class="hljs-number">100</span>);
+        <span class="hljs-keyword">for</span> (ConsumerRecord&lt;String, String&gt; record : records) {
+             System.out.println(
+                 <span class="hljs-string">&quot;topic = %s, partition = %s, offset = %d, customer = %s, country = %s\n&quot;</span>, 
+                 record.topic(), record.partition(), record.offset(), record.key(),
+                 record.value());
+             currentOffsets.put(<span class="hljs-keyword">new</span> TopicPartition(record.topic(), record.partition()),
+                                <span class="hljs-keyword">new</span> OffsetAndMetadata(record.offset()+<span class="hljs-number">1</span>, <span class="hljs-string">&quot;no metadata&quot;</span>));
+        }
+        consumer.commitAsync(currentOffsets, <span class="hljs-keyword">null</span>);
+    }
+} <span class="hljs-keyword">catch</span> (WakeupException e) {
+    <span class="hljs-comment">// &#x5FFD;&#x7565;&#x5F02;&#x5E38;,&#x6B63;&#x5728;&#x5173;&#x95ED;&#x6D88;&#x8D39;&#x8005; </span>
+} <span class="hljs-keyword">catch</span> (Exception e) {
+    log.error(<span class="hljs-string">&quot;Unexpected error&quot;</span>, e);
+} <span class="hljs-keyword">finally</span> {
+    <span class="hljs-keyword">try</span> {
+        consumer.commitSync(currentOffsets);
+    } <span class="hljs-keyword">finally</span> {
+        consumer.close();
+        System.out.println(<span class="hljs-string">&quot;Closed consumer and we are done&quot;</span>);
+    }
+}
+</code></pre>
+<p>&#x2776; &#x9996;&#x5148;&#x5B9E;&#x73B0; <code>ConsumerRebalanceListener</code> &#x63A5;&#x53E3;&#x3002;</p>
+<p>&#x2777; &#x5728;&#x83B7;&#x5F97;&#x65B0;&#x5206;&#x533A;&#x540E;&#x5F00;&#x59CB;&#x8BFB;&#x53D6;&#x6D88;&#x606F;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5176;&#x5B83;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x2778; &#x5982;&#x679C;&#x53D1;&#x751F;&#x518D;&#x5747;&#x8861;&#xFF0C;&#x8981;&#x5728;&#x5373;&#x5C06;&#x5931;&#x53BB;&#x5206;&#x533A;&#x6240;&#x6709;&#x6743;&#x65F6;&#x63D0;&#x4EA4;&#x504F;&#x79FB;&#x91CF;&#x3002;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x63D0;&#x4EA4;&#x7684;&#x662F;&#x6700;&#x8FD1;&#x5904;&#x7406;&#x8FC7;&#x7684;&#x504F;&#x79FB;&#x91CF;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6279;&#x6B21;&#x4E2D;&#x8FD8;&#x5728;&#x5904;&#x7406;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x504F;&#x79FB;&#x91CF;&#x3002;&#x56E0;&#x4E3A;&#x5206;&#x533A;&#x6709;&#x53EF;&#x80FD;&#x5728;&#x8FD8;&#x5728;&#x5904;&#x7406;&#x6D88;&#x606F;&#x7684;&#x65F6;&#x5019;&#x88AB;&#x64A4;&#x56DE;&#x3002;&#x8981;&#x63D0;&#x4EA4;&#x6240;&#x6709;&#x5206;&#x533A;&#x7684;&#x504F;&#x79FB;&#x91CF;&#xFF0C;&#x800C;&#x4E0D;&#x53EA;&#x662F;&#x90A3;&#x4E9B;&#x5373;&#x5C06;&#x5931;&#x53BB;&#x6240;&#x6709;&#x6743;&#x7684;&#x5206;&#x533A;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x2014;&#x2014;&#x56E0;&#x4E3A;&#x63D0;&#x4EA4;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x662F;&#x5DF2;&#x7ECF;&#x5904;&#x7406;&#x8FC7;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x4F1A;&#x6709;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#x3002;&#x8C03;&#x7528; <code>commitSync()</code> &#x65B9;&#x6CD5;&#xFF0C;&#x786E;&#x4FDD;&#x5728;&#x518D;&#x5747;&#x8861;&#x53D1;&#x751F;&#x4E4B;&#x524D;&#x63D0;&#x4EA4;&#x504F;&#x79FB;&#x91CF;&#x3002;</p>
+<p>&#x2779; &#x628A; <code>ConsumerRebalanceListener</code> &#x5BF9;&#x8C61;&#x4F20;&#x7ED9; <code>subscribe()</code> &#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x662F;&#x6700;&#x91CD;&#x8981;&#x7684;&#x4E00;&#x6B65;&#x3002;</p>
+<h3 id="48&#x3000;&#x4ECE;&#x7279;&#x5B9A;&#x504F;&#x79FB;&#x91CF;&#x5904;&#x5F00;&#x59CB;&#x5904;&#x7406;&#x8BB0;&#x5F55;">4.8&#x3000;&#x4ECE;&#x7279;&#x5B9A;&#x504F;&#x79FB;&#x91CF;&#x5904;&#x5F00;&#x59CB;&#x5904;&#x7406;&#x8BB0;&#x5F55;</h3>
+<p>&#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#xFF0C;&#x5DF2;&#x7ECF;&#x77E5;&#x9053;&#x4E86;&#x5982;&#x4F55;&#x4F7F;&#x7528; <code>poll()</code> &#x65B9;&#x6CD5;&#x4ECE;&#x5404;&#x4E2A;&#x5206;&#x533A;&#x7684;&#x6700;&#x65B0;&#x504F;&#x79FB;&#x91CF;&#x5904;&#x5F00;&#x59CB;&#x5904;&#x7406;&#x6D88;&#x606F;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x6709;&#x65F6;&#x5019;&#x4E5F;&#x9700;&#x8981;&#x4ECE;&#x7279;&#x5B9A;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x5904;&#x5F00;&#x59CB;&#x8BFB;&#x53D6;&#x6D88;&#x606F;&#x3002;&#x5982;&#x679C;&#x60F3;&#x4ECE;&#x5206;&#x533A;&#x7684;&#x8D77;&#x59CB;&#x4F4D;&#x7F6E;&#x5F00;&#x59CB;&#x8BFB;&#x53D6;&#x6D88;&#x606F;&#xFF0C;&#x6216;&#x8005;&#x76F4;&#x63A5;&#x8DF3;&#x5230;&#x5206;&#x533A;&#x7684;&#x672B;&#x5C3E;&#x5F00;&#x59CB;&#x8BFB;&#x53D6;&#x6D88;&#x606F;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>seekToBeginning(Collection&lt;TopicPartition&gt; tp)</code> &#x548C; <code>seekToEnd(Collection&lt;TopicPartition&gt; tp)</code>&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>Kafka &#x4E5F;&#x63D0;&#x4F9B;&#x4E86;&#x7528;&#x4E8E;&#x67E5;&#x627E;&#x7279;&#x5B9A;&#x504F;&#x79FB;&#x91CF;&#x7684; API&#x3002;&#x5B83;&#x6709;&#x5F88;&#x591A;&#x7528;&#x9014;&#xFF0C;&#x6BD4;&#x5982;&#x5411;&#x540E;&#x56DE;&#x9000;&#x51E0;&#x4E2A;&#x6D88;&#x606F;&#x6216;&#x8005;&#x5411;&#x524D;&#x8DF3;&#x8FC7;&#x51E0;&#x4E2A;&#x6D88;&#x606F;&#xFF08;&#x5BF9;&#x65F6;&#x95F4;&#x6BD4;&#x8F83;&#x654F;&#x611F;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5728;&#x5904;&#x7406;&#x6EDE;&#x540E;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x5E0C;&#x671B;&#x80FD;&#x591F;&#x5411;&#x524D;&#x8DF3;&#x8FC7;&#x82E5;&#x5E72;&#x4E2A;&#x6D88;&#x606F;&#xFF09;&#x3002;&#x5728;&#x4F7F;&#x7528; Kafka &#x4EE5;&#x5916;&#x7684;&#x7CFB;&#x7EDF;&#x6765;&#x5B58;&#x50A8;&#x504F;&#x79FB;&#x91CF;&#x65F6;&#xFF0C;&#x5B83;&#x5C06;&#x7ED9;&#x5E26;&#x6765;&#x66F4;&#x5927;&#x7684;&#x4FBF;&#x5229;&#x3002;</p>
+<p>&#x5047;&#x5982;&#xFF1A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4ECE; Kafka &#x8BFB;&#x53D6;&#x4E8B;&#x4EF6;&#xFF08;&#x53EF;&#x80FD;&#x662F;&#x7F51;&#x7AD9;&#x7684;&#x7528;&#x6237;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x6D41;&#xFF09;&#xFF0C;&#x5BF9;&#x5B83;&#x4EEC;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF08;&#x53EF;&#x80FD;&#x662F;&#x4F7F;&#x7528;&#x81EA;&#x52A8;&#x7A0B;&#x5E8F;&#x6E05;&#x7406;&#x70B9;&#x51FB;&#x64CD;&#x4F5C;&#x5E76;&#x6DFB;&#x52A0;&#x4F1A;&#x8BDD;&#x4FE1;&#x606F;&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x7ED3;&#x679C;&#x4FDD;&#x5B58;&#x5230;&#x6570;&#x636E;&#x5E93;&#x3001;NoSQL &#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x6216; Hadoop&#x3002;&#x5047;&#x8BBE;&#x771F;&#x7684;&#x4E0D;&#x60F3;&#x4E22;&#x5931;&#x4EFB;&#x4F55;&#x6570;&#x636E;&#xFF0C;&#x4E5F;&#x4E0D;&#x60F3;&#x5728;&#x6570;&#x636E;&#x5E93;&#x91CC;&#x591A;&#x6B21;&#x4FDD;&#x5B58;&#x76F8;&#x540C;&#x7684;&#x7ED3;&#x679C;&#x3002;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6D88;&#x8D39;&#x8005;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x662F;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+    ConsumerRecords&lt;String, String&gt; records = consumer.poll(<span class="hljs-number">100</span>);
+    <span class="hljs-keyword">for</span> (ConsumerRecord&lt;String, String&gt; record : records)
+    {
+        currentOffsets.put(<span class="hljs-keyword">new</span> TopicPartition(record.topic(), record.partition()),
+                           <span class="hljs-keyword">new</span> OffsetAndMetadata(record.offset()+<span class="hljs-number">1</span>);
+        processRecord(record);
+        storeRecordInDB(record);
+        consumer.commitAsync(currentOffsets);
+    }
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x91CC;&#xFF0C;&#x6BCF;&#x5904;&#x7406;&#x4E00;&#x6761;&#x8BB0;&#x5F55;&#x5C31;&#x63D0;&#x4EA4;&#x4E00;&#x6B21;&#x504F;&#x79FB;&#x91CF;&#x3002;&#x5C3D;&#x7BA1;&#x5982;&#x6B64;&#xFF0C;&#x5728;&#x8BB0;&#x5F55;&#x88AB;&#x4FDD;&#x5B58;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E4B;&#x540E;&#x4EE5;&#x53CA;&#x504F;&#x79FB;&#x91CF;&#x88AB;&#x63D0;&#x4EA4;&#x4E4B;&#x524D;&#xFF0C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4ECD;&#x7136;&#x6709;&#x53EF;&#x80FD;&#x53D1;&#x751F;&#x5D29;&#x6E83;&#xFF0C;&#x5BFC;&#x81F4;&#x91CD;&#x590D;&#x5904;&#x7406;&#x6570;&#x636E;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x91CC;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x91CD;&#x590D;&#x8BB0;&#x5F55;&#x3002;&#x5982;&#x679C;&#x4FDD;&#x5B58;&#x8BB0;&#x5F55;&#x548C;&#x504F;&#x79FB;&#x91CF;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x539F;&#x5B50;&#x64CD;&#x4F5C;&#x91CC;&#x5B8C;&#x6210;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x51FA;&#x73B0;&#x4E0A;&#x8FF0;&#x60C5;&#x51B5;&#x3002;&#x8BB0;&#x5F55;&#x548C;&#x504F;&#x79FB;&#x91CF;&#x8981;&#x4E48;&#x90FD;&#x88AB;&#x6210;&#x529F;&#x63D0;&#x4EA4;&#xFF0C;&#x8981;&#x4E48;&#x90FD;&#x4E0D;&#x63D0;&#x4EA4;&#x3002;&#x5982;&#x679C;&#x8BB0;&#x5F55;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x6570;&#x636E;&#x5E93;&#x91CC;&#x800C;&#x504F;&#x79FB;&#x91CF;&#x662F;&#x63D0;&#x4EA4;&#x5230; Kafka &#x4E0A;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x65E0;&#x6CD5;&#x5B9E;&#x73B0;&#x539F;&#x5B50;&#x64CD;&#x4F5C;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#x91CC;&#x628A;&#x8BB0;&#x5F55;&#x548C;&#x504F;&#x79FB;&#x91CF;&#x90FD;&#x5199;&#x5230;&#x6570;&#x636E;&#x5E93;&#x91CC;&#x5462;&#xFF1F;&#x90A3;&#x4E48;&#x5C31;&#x4F1A;&#x77E5;&#x9053;&#x8BB0;&#x5F55;&#x548C;&#x504F;&#x79FB;&#x91CF;&#x8981;&#x4E48;&#x90FD;&#x6210;&#x529F;&#x63D0;&#x4EA4;&#xFF0C;&#x8981;&#x4E48;&#x90FD;&#x6CA1;&#x6709;&#xFF0C;&#x7136;&#x540E;&#x91CD;&#x65B0;&#x5904;&#x7406;&#x8BB0;&#x5F55;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x504F;&#x79FB;&#x91CF;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x6570;&#x636E;&#x5E93;&#x91CC;&#x800C;&#x4E0D;&#x662F; Kafka &#x91CC;&#xFF0C;&#x90A3;&#x4E48;&#x6D88;&#x8D39;&#x8005;&#x5728;&#x5F97;&#x5230;&#x65B0;&#x5206;&#x533A;&#x65F6;&#x600E;&#x4E48;&#x77E5;&#x9053;&#x8BE5;&#x4ECE;&#x54EA;&#x91CC;&#x5F00;&#x59CB;&#x8BFB;&#x53D6;&#xFF1F;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>seek()</code> &#x65B9;&#x6CD5;&#x3002;&#x5728;&#x6D88;&#x8D39;&#x8005;&#x542F;&#x52A8;&#x6216;&#x5206;&#x914D;&#x5230;&#x65B0;&#x5206;&#x533A;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>seek()</code> &#x65B9;&#x6CD5;&#x67E5;&#x627E;&#x4FDD;&#x5B58;&#x5728;&#x6570;&#x636E;&#x5E93;&#x91CC;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x5927;&#x81F4;&#x8BF4;&#x660E;&#x4E86;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A; API&#x3002;&#x4F7F;&#x7528; <code>ConsumerRebalanceListener</code> &#x548C; <code>seek()</code> &#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x786E;&#x4FDD;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x91CC;&#x4FDD;&#x5B58;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x6240;&#x6307;&#x5B9A;&#x7684;&#x4F4D;&#x7F6E;&#x5F00;&#x59CB;&#x5904;&#x7406;&#x6D88;&#x606F;&#x7684;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SaveOffsetsOnRebalance</span> <span class="hljs-keyword">implements</span>
+  <span class="hljs-title">ConsumerRebalanceListener</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPartitionsRevoked</span><span class="hljs-params">(Collection&lt;TopicPartition&gt; partitions)</span> </span>{
+            commitDBTransaction(); <span class="hljs-comment">//&#x278A;</span>
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPartitionsAssigned</span><span class="hljs-params">(Collection&lt;TopicPartition&gt; partitions)</span> </span>{
+        <span class="hljs-keyword">for</span>(TopicPartition partition: partitions)
+            consumer.seek(partition, getOffsetFromDB(partition));<span class="hljs-comment">// &#x278B;</span>
+        }
+    }
+}
+
+  consumer.subscribe(topics, <span class="hljs-keyword">new</span> SaveOffsetOnRebalance(consumer));
+  consumer.poll(<span class="hljs-number">0</span>);
+
+  <span class="hljs-keyword">for</span> (TopicPartition partition: consumer.assignment())
+    consumer.seek(partition, getOffsetFromDB(partition));<span class="hljs-comment">// &#x278C;</span>
+
+  <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+      ConsumerRecords&lt;String, String&gt; records = consumer.poll(<span class="hljs-number">100</span>);
+      <span class="hljs-keyword">for</span> (ConsumerRecord&lt;String, String&gt; record : records) {
+          processRecord(record);
+          storeRecordInDB(record);
+          storeOffsetInDB(record.topic(), record.partition(),
+            record.offset());<span class="hljs-comment">// &#x278D;</span>
+      }
+      commitDBTransaction();
+}
+</code></pre>
+<p>&#x2776; &#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x865A;&#x6784;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x63D0;&#x4EA4;&#x6570;&#x636E;&#x5E93;&#x4E8B;&#x52A1;&#x3002;&#x5927;&#x81F4;&#x60F3;&#x6CD5;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;&#x5728;&#x5904;&#x7406;&#x5B8C;&#x8BB0;&#x5F55;&#x4E4B;&#x540E;&#xFF0C;&#x5C06;&#x8BB0;&#x5F55;&#x548C;&#x504F;&#x79FB;&#x91CF;&#x63D2;&#x5165;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x5373;&#x5C06;&#x5931;&#x53BB;&#x5206;&#x533A;&#x6240;&#x6709;&#x6743;&#x4E4B;&#x524D;&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#xFF0C;&#x786E;&#x4FDD;&#x6210;&#x529F;&#x4FDD;&#x5B58;&#x4E86;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x2777; &#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x865A;&#x6784;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x4ECE;&#x6570;&#x636E;&#x5E93;&#x83B7;&#x53D6;&#x504F;&#x79FB;&#x91CF;&#xFF0C;&#x5728;&#x5206;&#x914D;&#x5230;&#x65B0;&#x5206;&#x533A;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F7F;&#x7528; <code>seek()</code> &#x65B9;&#x6CD5;&#x5B9A;&#x4F4D;&#x5230;&#x90A3;&#x4E9B;&#x8BB0;&#x5F55;&#x3002;</p>
+<p>&#x2778; &#x8BA2;&#x9605;&#x4E3B;&#x9898;&#x4E4B;&#x540E;&#xFF0C;&#x5F00;&#x59CB;&#x542F;&#x52A8;&#x6D88;&#x8D39;&#x8005;&#xFF0C;&#x8C03;&#x7528;&#x4E00;&#x6B21; poll() &#x65B9;&#x6CD5;&#xFF0C;&#x8BA9;&#x6D88;&#x8D39;&#x8005;&#x52A0;&#x5165;&#x5230;&#x6D88;&#x8D39;&#x8005;&#x7FA4;&#x7EC4;&#x91CC;&#xFF0C;&#x5E76;&#x83B7;&#x53D6;&#x5206;&#x914D;&#x5230;&#x7684;&#x5206;&#x533A;&#xFF0C;&#x7136;&#x540E;&#x9A6C;&#x4E0A;&#x8C03;&#x7528; <code>seek()</code> &#x65B9;&#x6CD5;&#x5B9A;&#x4F4D;&#x5206;&#x533A;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x3002;&#x8981;&#x8BB0;&#x4F4F;&#xFF0C;<code>seek()</code> &#x65B9;&#x6CD5;&#x53EA;&#x66F4;&#x65B0;&#x6B63;&#x5728;&#x4F7F;&#x7528;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x5728;&#x4E0B;&#x4E00;&#x6B21;&#x8C03;&#x7528; <code>poll()</code> &#x65F6;&#x5C31;&#x53EF;&#x4EE5;&#x83B7;&#x5F97;&#x6B63;&#x786E;&#x7684;&#x6D88;&#x606F;&#x3002;&#x5982;&#x679C; <code>seek()</code> &#x53D1;&#x751F;&#x9519;&#x8BEF;&#xFF08;&#x6BD4;&#x5982;&#x504F;&#x79FB;&#x91CF;&#x4E0D;&#x5B58;&#x5728;&#xFF09;&#xFF0C;<code>poll()</code> &#x5C31;&#x4F1A;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x3002;</p>
+<p>&#x2779; &#x53E6;&#x4E00;&#x4E2A;&#x865A;&#x6784;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x6B21;&#x8981;&#x66F4;&#x65B0;&#x7684;&#x662F;&#x6570;&#x636E;&#x5E93;&#x91CC;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x504F;&#x79FB;&#x91CF;&#x7684;&#x8868;&#x3002;&#x5047;&#x8BBE;&#x66F4;&#x65B0;&#x8BB0;&#x5F55;&#x7684;&#x901F;&#x5EA6;&#x975E;&#x5E38;&#x5FEB;&#xFF0C;&#x6240;&#x4EE5;&#x6BCF;&#x6761;&#x8BB0;&#x5F55;&#x90FD;&#x9700;&#x8981;&#x66F4;&#x65B0;&#x4E00;&#x6B21;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x4F46;&#x63D0;&#x4EA4;&#x7684;&#x901F;&#x5EA6;&#x6BD4;&#x8F83;&#x6162;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x5728;&#x6BCF;&#x4E2A;&#x6279;&#x6B21;&#x672B;&#x5C3E;&#x63D0;&#x4EA4;&#x4E00;&#x6B21;&#x3002;&#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5F88;&#x591A;&#x79CD;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x628A;&#x504F;&#x79FB;&#x91CF;&#x548C;&#x8BB0;&#x5F55;&#x4FDD;&#x5B58;&#x5230;&#x540C;&#x4E00;&#x4E2A;&#x5916;&#x90E8;&#x7CFB;&#x7EDF;&#x6765;&#x5B9E;&#x73B0;&#x5355;&#x6B21;&#x8BED;&#x4E49;&#x53EF;&#x4EE5;&#x6709;&#x5F88;&#x591A;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x4E0D;&#x8FC7;&#x5B83;&#x4EEC;&#x90FD;&#x9700;&#x8981;&#x7ED3;&#x5408;&#x4F7F;&#x7528; <code>ConsumerRebalanceListener</code> &#x548C; <code>seek()</code> &#x65B9;&#x6CD5;&#x6765;&#x786E;&#x4FDD;&#x80FD;&#x591F;&#x53CA;&#x65F6;&#x4FDD;&#x5B58;&#x504F;&#x79FB;&#x91CF;&#xFF0C;&#x5E76;&#x4FDD;&#x8BC1;&#x6D88;&#x8D39;&#x8005;&#x603B;&#x662F;&#x80FD;&#x591F;&#x4ECE;&#x6B63;&#x786E;&#x7684;&#x4F4D;&#x7F6E;&#x5F00;&#x59CB;&#x8BFB;&#x53D6;&#x6D88;&#x606F;&#x3002;</p>
+<h3 id="49&#x3000;&#x5982;&#x4F55;&#x9000;&#x51FA;">4.9&#x3000;&#x5982;&#x4F55;&#x9000;&#x51FA;</h3>
+<p>&#x5728;&#x4E4B;&#x524D;&#x8BA8;&#x8BBA;&#x8F6E;&#x8BE2;&#x65F6;&#x5C31;&#x8BF4;&#x8FC7;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x62C5;&#x5FC3;&#x6D88;&#x8D39;&#x8005;&#x4F1A;&#x5728;&#x4E00;&#x4E2A;&#x65E0;&#x9650;&#x5FAA;&#x73AF;&#x91CC;&#x8F6E;&#x8BE2;&#x6D88;&#x606F;&#xFF0C;&#x8981;&#x544A;&#x8BC9;&#x6D88;&#x8D39;&#x8005;&#x5982;&#x4F55;&#x4F18;&#x96C5;&#x5730;&#x9000;&#x51FA;&#x5FAA;&#x73AF;&#x3002;&#x5982;&#x679C;&#x786E;&#x5B9A;&#x8981;&#x9000;&#x51FA;&#x5FAA;&#x73AF;&#xFF0C;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x8C03;&#x7528; <code>consumer.wakeup()</code> &#x65B9;&#x6CD5;&#x3002;&#x5982;&#x679C;&#x5FAA;&#x73AF;&#x8FD0;&#x884C;&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x91CC;&#xFF0C;&#x53EF;&#x4EE5;&#x5728; <code>ShutdownHook</code> &#x91CC;&#x8C03;&#x7528;&#x8BE5;&#x65B9;&#x6CD5;&#x3002;&#x8981;&#x8BB0;&#x4F4F;&#xFF0C;<code>consumer.wakeup()</code> &#x662F;&#x6D88;&#x8D39;&#x8005;&#x552F;&#x4E00;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x4ECE;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x91CC;&#x5B89;&#x5168;&#x8C03;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x8C03;&#x7528; <code>consumer.wakeup()</code> &#x53EF;&#x4EE5;&#x9000;&#x51FA; <code>poll()</code>&#xFF0C;&#x5E76;&#x629B;&#x51FA; <code>WakeupException</code> &#x5F02;&#x5E38;&#xFF0C;&#x6216;&#x8005;&#x5982;&#x679C;&#x8C03;&#x7528; <code>consumer.wakeup()</code> &#x65F6;&#x7EBF;&#x7A0B;&#x6CA1;&#x6709;&#x7B49;&#x5F85;&#x8F6E;&#x8BE2;&#xFF0C;&#x90A3;&#x4E48;&#x5F02;&#x5E38;&#x5C06;&#x5728;&#x4E0B;&#x4E00;&#x8F6E;&#x8C03;&#x7528; <code>poll()</code> &#x65F6;&#x629B;&#x51FA;&#x3002;&#x4E0D;&#x9700;&#x8981;&#x5904;&#x7406; <code>WakeupException</code>&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x53EA;&#x662F;&#x7528;&#x4E8E;&#x8DF3;&#x51FA;&#x5FAA;&#x73AF;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x5728;&#x9000;&#x51FA;&#x7EBF;&#x7A0B;&#x4E4B;&#x524D;&#x8C03;&#x7528;<code>consumer.close()</code>&#x662F;&#x5F88;&#x6709;&#x5FC5;&#x8981;&#x7684;&#xFF0C;&#x5B83;&#x4F1A;&#x63D0;&#x4EA4;&#x4EFB;&#x4F55;&#x8FD8;&#x6CA1;&#x6709;&#x63D0;&#x4EA4;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x5E76;&#x5411;&#x7FA4;&#x7EC4;&#x534F;&#x8C03;&#x5668;&#x53D1;&#x9001;&#x6D88;&#x606F;&#xFF0C;&#x544A;&#x77E5;&#x81EA;&#x5DF1;&#x8981;&#x79BB;&#x5F00;&#x7FA4;&#x7EC4;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x4F1A;&#x89E6;&#x53D1;&#x518D;&#x5747;&#x8861;&#xFF0C;&#x800C;&#x4E0D;&#x9700;&#x8981;&#x7B49;&#x5F85;&#x4F1A;&#x8BDD;&#x8D85;&#x65F6;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x662F;&#x8FD0;&#x884C;&#x5728;&#x4E3B;&#x7EBF;&#x7A0B;&#x4E0A;&#x7684;&#x6D88;&#x8D39;&#x8005;&#x9000;&#x51FA;&#x7EBF;&#x7A0B;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x8FD9;&#x4E9B;&#x4EE3;&#x7801;&#x7ECF;&#x8FC7;&#x4E86;&#x7B80;&#x5316;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x8FD9;&#x91CC;&#x67E5;&#x770B;&#x5B8C;&#x6574;&#x7684;&#x4EE3;&#x7801;&#xFF1A;<a href="http://bit.ly/2u47e9A&#x3002;" target="_blank">http://bit.ly/2u47e9A&#x3002;</a></p>
+<pre><code class="lang-java">Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                System.out.println(&quot;Starting exit...&quot;)&quot;;
+                consumer.wakeup();// &#x278A;
+                try {
+                    mainThread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+...
+
+try {
+            // &#x5FAA;&#x73AF;&#xFF0C;&#x76F4;&#x5230;&#x6309;&#x4E0B; Ctrl+C &#x952E;&#xFF0C;&#x5173;&#x95ED;&#x7684;&#x94A9;&#x5B50;&#x4F1A;&#x5728;&#x9000;&#x51FA;&#x65F6;&#x8FDB;&#x884C;&#x6E05;&#x7406; 
+            while (true) {
+                ConsumerRecords&lt;String&#xFF0C; String&gt; records = movingAvg.consumer.poll(1000);
+                System.out.println(System.currentTimeMillis()
+                                   + &quot;--  waiting for data...&quot;);
+                for (ConsumerRecord&lt;String&#xFF0C; String&gt; record : records) {
+                    System.out.printf(&quot;offset = %d&#xFF0C; key = %s&#xFF0C;value = %s\n&quot;,
+                                      record.offset(), record.key(),record.value());
+                }
+                for (TopicPartition tp: consumer.assignment())
+                    System.out.println(&quot;Committing offset at position:&quot;
+                                       + consumer.position(tp));
+                movingAvg.consumer.commitSync();
+            }
+        } catch (WakeupException e) {
+            // &#x5FFD;&#x7565;&#x5173;&#x95ED;&#x5F02;&#x5E38; &#x278B;
+        } finally {
+            consumer.close();// &#x278C;
+            System.out.println(&quot;Closed consumer and we are done&quot;);
+        }
+    }
+</code></pre>
+<p>&#x2776; <code>ShutdownHook</code> &#x8FD0;&#x884C;&#x5728;&#x5355;&#x72EC;&#x7684;&#x7EBF;&#x7A0B;&#x91CC;&#xFF0C;&#x6240;&#x4EE5;&#x9000;&#x51FA;&#x5FAA;&#x73AF;&#x6700;&#x5B89;&#x5168;&#x7684;&#x65B9;&#x5F0F;&#x53EA;&#x80FD;&#x662F;&#x8C03;&#x7528; <code>wakeup()</code> &#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x2777; &#x5728;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x91CC;&#x8C03;&#x7528; <code>wakeup()</code> &#x65B9;&#x6CD5;&#xFF0C;&#x5BFC;&#x81F4; <code>poll()</code> &#x629B;&#x51FA; <code>WakeupException</code>&#x3002;&#x4E0D;&#x9700;&#x5904;&#x7406;&#x8FD9;&#x4E2A;&#x5F02;&#x5E38;&#x3002;</p>
+<p>&#x2778; &#x5728;&#x9000;&#x51FA;&#x4E4B;&#x524D;&#xFF0C;&#x786E;&#x4FDD;&#x5F7B;&#x5E95;&#x5173;&#x95ED;&#x4E86;&#x6D88;&#x8D39;&#x8005;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="003.html" class="navigation navigation-prev " aria-label="Previous page: 提交和偏移量">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="005.html" class="navigation navigation-next " aria-label="Next page: 其它">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"再均衡监听器、从特定偏移开始、退出","level":"1.5.4.4","depth":3,"next":{"title":"其它","level":"1.5.4.5","depth":3,"path":"kafkaquan-wei-zhi-nan/di-si-zhang-3001-kafka-xiao-fei-zhe/005.md","ref":"kafkaquan-wei-zhi-nan/di-si-zhang-3001-kafka-xiao-fei-zhe/005.md","articles":[]},"previous":{"title":"提交和偏移量","level":"1.5.4.3","depth":3,"path":"kafkaquan-wei-zhi-nan/di-si-zhang-3001-kafka-xiao-fei-zhe/003.md","ref":"kafkaquan-wei-zhi-nan/di-si-zhang-3001-kafka-xiao-fei-zhe/003.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"kafkaquan-wei-zhi-nan/di-si-zhang-3001-kafka-xiao-fei-zhe/004.md","mtime":"2021-03-05T02:52:45.694Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-07-29T03:18:52.364Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
